@@ -1,6 +1,6 @@
 import pandas as pd
 import os
-from utils.quaternion import euler_to_quaternion
+from HeadPositionPrediction.utils.quaternion import euler_to_quaternion
 import numpy as np
 
 def adjust_sample_rate(data_path, output_path, interpolation_time):
