@@ -18,8 +18,7 @@ def adjust_sample_rate(data_path, output_path, interpolation_time):
         csv_files = [f for f in os.listdir(folder_path) if f.endswith('.csv')]
 
         for csv_file in csv_files:
-            save_folder = './preprocessed_Data/'
-            save_folder = os.path.join(save_folder, subfolder)
+            save_folder = os.path.join(output_path, subfolder)
 
             file_path_src = os.path.join(folder_path, csv_file)
             file_path_dst = os.path.join(save_folder, csv_file)
