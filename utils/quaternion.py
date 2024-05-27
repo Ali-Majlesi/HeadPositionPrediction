@@ -1,4 +1,5 @@
 import numpy as np
+
 def euler_to_quaternion(yaw, pitch, roll):
 
     qx = np.sin(roll/2) * np.cos(pitch/2) * np.cos(yaw/2) - np.cos(roll/2) * np.sin(pitch/2) * np.sin(yaw/2)
@@ -19,3 +20,10 @@ def euler_to_quaternion(yaw, pitch, roll):
         q[i+1] = np.where(condition, q[i+1], -q[i+1])
 
     return q
+
+def quaternion_to_euler(qx, qy, qz, qw):
+    phi = np.arctan2(2*(qw*qx + qy*qz), 1-2*(qx**2 + qy**2))
+    a1 = 2*(qw*qy - qx*qz)
+    theta = -np.pi/2 + 2*np.arctan2(np.sqrt(1+a1), np.sqrt(1-a1))
+    psi = np.arctan2(2*(qw*qz + qx*qy), 1-2*(qy**2 + qz**2))
+    return phi, theta, psi
