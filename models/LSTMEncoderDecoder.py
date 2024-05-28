@@ -25,7 +25,7 @@ class LSTMEncoderDecoder(nn.Module):
         self.Max_len_out = Max_len_out
         self.device = device
 
-    def forward(self, x, target):
+    def forward(self, x, target=None):
         # Encoder
         _, encoder_hidden = self.encoder(x)
         batch_size = x.shape[0]
