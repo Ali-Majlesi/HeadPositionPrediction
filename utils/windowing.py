@@ -16,10 +16,10 @@ def windowing(df, column_names, window_size, pred_horizen=1, shift_output=True):
     X = np.zeros((len(df), window_size, len(column_names)))
     Y = np.zeros((len(df), window_size, len(column_names)))
 
-    #if shift_output:
-    #    offset_output = window_size
-    #else:
-    offset_output = pred_horizen
+    if shift_output:
+        offset_output = window_size
+    else:
+        offset_output = pred_horizen
 
     for n_shift in range(window_size):
         X[:, n_shift,:] = df[column_names].shift(-n_shift)
