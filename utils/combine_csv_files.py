@@ -4,7 +4,7 @@ from tqdm import tqdm
 import pandas as pd
 from HeadPositionPrediction.utils.calculate_speed import calculate_speed_acceleration, calculate_angular_velocity
 
-def combine_csv_files(folder_path, relative_to_fisrt_point = False, is_calculate_speed = False, is_calculate_angular_vel=False):
+def combine_csv_files(folder_path, relative_to_fisrt_point = False, is_calculate_speed = False, is_calculate_angular_vel=False, dt = None, Q_position_block=None, R_position=None, Q_angle_block=None, R_angle=None):
     """
     Combine all CSV files in a specified folder into a single Pandas DataFrame.
 
@@ -28,10 +28,10 @@ def combine_csv_files(folder_path, relative_to_fisrt_point = False, is_calculate
             data_frame['z'] = data_frame['z'] - data_frame['z'].iloc[0]
 
         if is_calculate_speed:
-            data_frame = calculate_speed_acceleration(data_frame)
+            data_frame = calculate_speed_acceleration(data_frame, dt, Q_position_block, R_position)
 
         if is_calculate_angular_vel:
-            data_frame = calculate_angular_velocity(data_frame)
+            data_frame = calculate_angular_velocity(data_frame, dt, Q_angle_block, R_angle)
 
         qw = data_frame['qw'].values
         qx = data_frame['qx'].values
